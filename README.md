@@ -1,5 +1,5 @@
 Estrutura dos arquivos:
-
+```text
 Trabalho_Prog1_Final/
 ├── Makefile
 ├── README.md
@@ -17,7 +17,7 @@ Trabalho_Prog1_Final/
 │ ├── fila.c
 │ ├── ingredientes.c
 └── 
-
+```
 
 Felipe 10/11
 
