@@ -9,3 +9,7 @@ Kojima-Inicio da implementação das estacoes e das receitas e a finalização d
 14/11/26
 
 Kojima - começo da criação das estruturas da lista encadeada simples(chamamos de ingredientes)
+
+16/11/59
+
+Kojima - Continuação da implementação das funções da lista encadeada simples
