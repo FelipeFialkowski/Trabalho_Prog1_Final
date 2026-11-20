@@ -1,17 +1,17 @@
-
 CC = gcc
 
-CFLAGS = -std=c23 -Wall -Wextra -Wpedantic -g 
-CPPFLAGS = -Iinclude
-
-TARGET = programa
-
+INC_DIR = include
 SRC_DIR = src
 OBJ_DIR = obj
 
+CFLAGS = -std=c23 -Wall -Wextra -Wpedantic -g -I$(INC_DIR)
+DEPFLAGS = -MMD -MP
+
+TARGET = programa
+
 SRC = $(wildcard $(SRC_DIR)/*.c)
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
-
+DEP = $(OBJ:.o=.d)
 
 all: $(TARGET)
 
@@ -20,7 +20,7 @@ $(TARGET): $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
 run: $(TARGET)
 	./$(TARGET)
