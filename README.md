@@ -39,3 +39,6 @@ Felipe - Deixei a estrutura da pasta mais organizada, corrigi makefile, e *impor
 Nó da lista simples: ingrediente
 Lista simples em si: lista_simples
 Argumentos nas funções: estoque
+
+21/11/26
+Felipe - Coloquei o address sanitizer no makefile, implementei lista dupla e pilha com a maioria das suas funções.
