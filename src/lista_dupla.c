@@ -42,6 +42,36 @@ void insere_inicio(lista_dupla *lista, int id, char nome[50]){
 
 }
 
+// *Importante* A maneira que essa função funciona, é colocando a nova estação depois da estação representada pelo id
+void insere_meio(lista_dupla *lista, int id, int id_nova, char nome[50]){
+
+    lista_dupla_no *atual = lista->inicio;
+
+    //Procura a estação
+    while (atual != NULL && atual->id != id){
+        atual = atual->prox;
+    }
+
+    if(atual->prox == NULL){
+        insere_fim(lista, id_nova, nome);
+    }
+    lista_dupla_no *novo = malloc(sizeof(lista_dupla_no));
+
+    if (novo == NULL){
+        return;
+    }
+
+    novo->id = id_nova;
+    strncpy(novo->nome, nome, sizeof(novo->nome) - 1);
+    novo->nome[sizeof(novo->nome) - 1] = '\0';
+
+    novo->ant = atual;
+    novo->prox = atual->prox;
+
+    atual->prox->ant = novo;
+    atual->prox = novo;
+}
+
 void insere_fim(lista_dupla *lista, int id, char nome[50]){
 
     lista_dupla_no *novo = malloc(sizeof(lista_dupla_no));
@@ -78,6 +108,33 @@ lista_dupla_no* localiza_estacao(lista_dupla *lista, int id){
         atual = atual->prox;
     }
 }
+void remove_estacao(lista_dupla *lista, int id){
+
+    lista_dupla_no *atual;
+    atual = lista->inicio;
+    while (atual != NULL && atual->id != id){
+        atual = atual->prox;
+    }
+    if (atual == NULL){
+        return;
+    }
+    if(atual == lista->inicio){
+        lista->inicio = atual->prox;
+    }
+    else{
+        atual->ant->prox = atual->prox;
+    }
+
+    if(atual->prox == NULL){
+        lista->fim = atual->ant;
+    }
+    else{
+        atual->prox->ant = atual->ant;
+    }
+
+    free(atual);
+}
+
 
 bool avancar(jogador *j){
 

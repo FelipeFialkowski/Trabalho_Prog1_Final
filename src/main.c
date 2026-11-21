@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include "lista_dupla.h"
 #include "menu.h"
+#include "time.h"
 
 int main(){
+    
+    srand(time(NULL));
 
     lista_dupla estacoes;
     jogador j;

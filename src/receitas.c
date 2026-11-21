@@ -23,3 +23,7 @@ void montar_receitas(){
     strcpy(receitas[2].ingredientes[1], "Tomate");
 }
 
+int escolhe_receita(){
+    int receita = rand() % 2;
+    return receita;
+}

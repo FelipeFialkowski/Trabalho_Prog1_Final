@@ -1,7 +1,6 @@
 #ifndef RECEITAS_H
 #define RECEITAS_H
 
-
 typedef struct receita{
 
     int id;

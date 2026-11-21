@@ -1,5 +1,5 @@
-#ifndef FILA_H
-#define FILA_H
+#ifndef PEDIDOS_H
+#define PEDIDOS_H
 
 typedef struct fila_no{
 
