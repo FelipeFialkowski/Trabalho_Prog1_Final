@@ -4,7 +4,8 @@
 int main(){
 
     lista_dupla estacoes;
-    cria_lista_dupla(&estacoes);
+    jogador j;
+    cria_lista_dupla(&estacoes, &j);
 
     int opcao = -1;
 

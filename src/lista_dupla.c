@@ -3,26 +3,40 @@
 #include <stdlib.h>
 #include <string.h>
 
-void cria_lista_dupla(lista_dupla *lista){
+void cria_lista_dupla(lista_dupla *lista, jogador *j){
     lista->inicio = NULL;
     lista->fim = NULL;
 
     insere_inicio(lista, 1, "Estoque");
-    insere_inicio(lista, 2, "Corte");
-    insere_inicio(lista, 3, "Fogão");
-    insere_inicio(lista, 4, "Montagem_prato");
-    insere_inicio(lista, 5, "Entrega");
+    insere_fim(lista, 2, "Corte");
+    insere_fim(lista, 3, "Fogão");
+    insere_fim(lista, 4, "Montagem_prato");
+    insere_fim(lista, 5, "Entrega");
+
+    j->estacao_atual = lista->inicio;
 }
 
 void insere_inicio(lista_dupla *lista, int id, char nome[50]){
 
     lista_dupla_no *novo = malloc(sizeof(lista_dupla_no));
 
+    if (novo == NULL){
+        return;
+    }
+
     novo->id = id;
     strncpy(novo->nome, nome, sizeof(novo->nome) - 1);
 
     novo->ant = NULL;
-    novo->prox = lista->inicio;
+    
+    if(lista->inicio == NULL){
+        novo->prox = NULL;
+        lista->fim = novo;
+    }
+    else{
+        novo->prox = lista->inicio;
+        lista->inicio->ant = novo;
+    }
 
     lista->inicio = novo;
 
@@ -32,14 +46,25 @@ void insere_fim(lista_dupla *lista, int id, char nome[50]){
 
     lista_dupla_no *novo = malloc(sizeof(lista_dupla_no));
 
+    if (novo == NULL){
+        return;
+    }
+
     novo->id = id;
     strncpy(novo->nome, nome, sizeof(novo->nome) - 1);
 
-    novo->ant = lista->inicio;
     novo->prox = NULL;
+    novo->ant = lista->fim;
 
-    lista->fim = novo;
+    if (lista->inicio == NULL){
+        lista->inicio = novo;
+    }
+
+    else{
+        lista->fim->prox = novo;
+    }
     
+    lista->fim = novo;
 }
 
 lista_dupla_no* localiza_estacao(lista_dupla *lista, int id){
@@ -51,5 +76,19 @@ lista_dupla_no* localiza_estacao(lista_dupla *lista, int id){
             return atual;
         }
         atual = atual->prox;
+    }
+}
+
+void avanca(jogador *j){
+
+    if (j->estacao_atual->prox != NULL){
+        j->estacao_atual = j->estacao_atual->prox;
+    }
+}
+
+void volta(jogador *j){
+
+    if (j->estacao_atual->ant != NULL){
+        j->estacao_atual = j->estacao_atual->ant;
     }
 }

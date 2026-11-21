@@ -4,7 +4,7 @@ INC_DIR = include
 SRC_DIR = src
 OBJ_DIR = obj
 
-CFLAGS = -std=c23 -Wall -Wextra -Wpedantic -g -I$(INC_DIR)
+CFLAGS = -std=c23 -Wall -Wextra -Wpedantic -g -I$(INC_DIR) -fsanitize=address
 DEPFLAGS = -MMD -MP
 
 TARGET = programa
