@@ -48,6 +48,10 @@ int insere_ingrediente(lista_simples *estoque,int id,const char *nome,int quanti
 }
 
 ingrediente* busca_ingrediente(lista_simples *estoque, int id){
+    if(checa_vazia(estoque)){
+        printf("lista vazia");
+        return NULL;
+    }
     ingrediente *atual = estoque->inicio;
     while(atual != NULL){ //verifica se ja não é o ultimo elemento da estoque
         if (atual->id == id)
@@ -59,7 +63,7 @@ ingrediente* busca_ingrediente(lista_simples *estoque, int id){
 
 int consome_ingrediente(lista_simples *estoque,int id, int quantidade){
     //retorna 1 se conseguir consumir
-    if (estoque == NULL || quantidade <= 0)
+    if (checa_vazia(estoque) || quantidade <= 0)
         return 0; //deu pau na hora de procurar
     
     ingrediente *atual = estoque->inicio; 
@@ -67,7 +71,7 @@ int consome_ingrediente(lista_simples *estoque,int id, int quantidade){
     while(atual != NULL){ //até chegar no ultimo elemento da estoque
         if(atual->id == id){
             if(atual->quantidade >= quantidade){ //eu realmente odeio que não da pra colocar =>
-                atual->quantidade =-quantidade;
+                atual->quantidade -= quantidade;
                 return 1;
             }  
             else{
@@ -81,6 +85,10 @@ int consome_ingrediente(lista_simples *estoque,int id, int quantidade){
 }
 
 int remove_da_lista(lista_simples *estoque,int id){
+    if(checa_vazia(estoque)){
+        printf("Lista vazia");
+        return 0; //retorna 0 pq a operação falhou
+    }
     ingrediente *atual = estoque->inicio;
     ingrediente *anterior = NULL;
 
@@ -107,12 +115,16 @@ int remove_da_lista(lista_simples *estoque,int id){
 }
 
 int checa_vazia(lista_simples *estoque){
-    if(estoque->inicio == NULL)
-        return 1; //é vazia
+    if(estoque->inicio == NULL || estoque == NULL)
+        return 1; //é vazia ou deu erro
     return 0; //não é vazia
 }
 
 void imprime_lista(lista_simples *estoque){
+    if (checa_vazia(estoque)){
+        printf("lista vazia");
+        return;
+    }
     ingrediente *atual = estoque->inicio;
     printf("Os ingredientes presentes na estoque são:\n");
     while(atual != NULL){
@@ -120,5 +132,3 @@ void imprime_lista(lista_simples *estoque){
         atual = atual->prox;
     }
 }
-
-//depos implementar a função eh_vazia em todas as funções que precisam dela
