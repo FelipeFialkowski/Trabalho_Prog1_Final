@@ -38,6 +38,10 @@ Felipe - Deixei a estrutura da pasta mais organizada, corrigi makefile, e *impor
 
 Nó da lista simples: ingrediente
 Lista simples em si: lista_simples
-Argumentos nas funções: estoque
+Argumentos nas funções: estoque(Kojima:eu tava me dando gasight achando que eu tinha trocado o nome sem saber)
 
-21/11/26 Felipe - Coloquei o address sanitizer no makefile, implementei lista dupla e pilha com a maioria das suas funções, atualizei o menu, e comecei a fazer a fila.
+21/11/26 
+
+Felipe - Coloquei o address sanitizer no makefile, implementei lista dupla e pilha com a maioria das suas funções, atualizei o menu, e comecei a fazer a fila.
+
+Kojima - Termino da implementação da lista simples colocando a checagem da lista vazia onde importava
