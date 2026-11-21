@@ -1,6 +1,10 @@
 #include <stdio.h>
+#include "lista_dupla.h"
 
 int main(){
+
+    lista_dupla estacoes;
+    cria_lista_dupla(&estacoes);
 
     int opcao = -1;
 
