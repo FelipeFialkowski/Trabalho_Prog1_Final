@@ -79,16 +79,20 @@ lista_dupla_no* localiza_estacao(lista_dupla *lista, int id){
     }
 }
 
-void avanca(jogador *j){
+bool avancar(jogador *j){
 
     if (j->estacao_atual->prox != NULL){
         j->estacao_atual = j->estacao_atual->prox;
+        return true;
     }
+    return false;
 }
 
-void volta(jogador *j){
+bool voltar(jogador *j){
 
     if (j->estacao_atual->ant != NULL){
         j->estacao_atual = j->estacao_atual->ant;
+        return true;
     }
+    return false;
 }

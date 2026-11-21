@@ -1,26 +1,35 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "lista_dupla.h"
+#include "menu.h"
 
 int main(){
 
     lista_dupla estacoes;
     jogador j;
+    char entrada[50];
     cria_lista_dupla(&estacoes, &j);
+    int turno = 0;
 
     int opcao = -1;
-
     while (opcao != 0){
 
-        printf("\n [1] Consultar pedidos\n"
-               " [2] Consultar estoque\n"
-               " [3] Ir para proxima estacao\n"
-               " [4] Ir para estacao anterior\n"
-               " [5] Entregar prato\n"
-               " [6] A definir\n"
-               " [0] Sair do jogo\n\n");
+        imprime_menu(&j, turno);
+       
+        if (fgets(entrada, sizeof(entrada), stdin) == NULL) {
+            break;
+        }
 
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        char *fim;
+        long numero = strtol(entrada, &fim, 10);
+
+        // Verifica se foi digitado um numero valido
+        if (fim == entrada || (*fim != '\n' && *fim != '\0')) {
+            printf("Digite apenas números\n");
+            continue;
+        }
+
+        opcao = (int) numero;
 
         switch(opcao){
 
@@ -36,12 +45,22 @@ int main(){
 
                 break;
 
+            // Avança uma estação
             case 3:
-
+                if (avancar(&j)){
+                    turno++;
+                    break;
+                }
+                printf("Não é possível avançar de estação\n");
                 break;
 
+            // Volta uma estação
             case 4:
-
+                if(voltar(&j)){
+                    turno++;
+                    break;
+                }
+                printf("Não é possível voltar de estação\n");
                 break;
 
             case 5:

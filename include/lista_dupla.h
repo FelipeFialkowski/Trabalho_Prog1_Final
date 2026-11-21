@@ -30,7 +30,7 @@ void insere_fim(lista_dupla *lista, int id, char nome[50]);
 void insere_meio(lista_dupla *lista, int id, char nome[50]);
 void remove_estacao(lista_dupla *lista, int id);
 lista_dupla_no* localiza_estacao(lista_dupla *lista, int id);
-void avanca(jogador *j);
-void volta(jogador *j);
+bool avancar(jogador *j);
+bool voltar(jogador *j);
 
 #endif
