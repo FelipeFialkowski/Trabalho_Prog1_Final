@@ -1,5 +1,9 @@
 #ifndef LISTA_DUPLA_H
 #define LISTA_DUPLA_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 // Representa cada estação
 typedef struct lista_dupla_no{
