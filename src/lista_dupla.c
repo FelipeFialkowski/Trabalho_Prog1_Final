@@ -1,16 +1,15 @@
 #include "lista_dupla.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 
 void cria_lista_dupla(lista_dupla *lista, jogador *j){
     lista->inicio = NULL;
     lista->fim = NULL;
+    lista->tamanho = 0;
 
     insere_inicio(lista, 1, "Estoque");
     insere_fim(lista, 2, "Corte");
     insere_fim(lista, 3, "Fogão");
-    insere_fim(lista, 4, "Montagem_prato");
+    insere_fim(lista, 4, "Montagem");
     insere_fim(lista, 5, "Entrega");
 
     j->estacao_atual = lista->inicio;
@@ -39,7 +38,7 @@ void insere_inicio(lista_dupla *lista, int id, char nome[50]){
     }
 
     lista->inicio = novo;
-
+    lista->tamanho++;
 }
 
 // *Importante* A maneira que essa função funciona, é colocando a nova estação depois da estação representada pelo id
@@ -48,18 +47,17 @@ void insere_meio(lista_dupla *lista, int id, int id_nova, char nome[50]){
     lista_dupla_no *atual = lista->inicio;
 
     //Procura a estação
-    while (atual != NULL && atual->id != id){
+    while (atual != NULL && atual->id != id)
         atual = atual->prox;
-    }
-
+    
     if(atual->prox == NULL){
         insere_fim(lista, id_nova, nome);
+        return; //precisa desse return por que se não ele continua dando insert depois do fim
     }
     lista_dupla_no *novo = malloc(sizeof(lista_dupla_no));
 
-    if (novo == NULL){
+    if (novo == NULL)
         return;
-    }
 
     novo->id = id_nova;
     strncpy(novo->nome, nome, sizeof(novo->nome) - 1);
@@ -70,6 +68,7 @@ void insere_meio(lista_dupla *lista, int id, int id_nova, char nome[50]){
 
     atual->prox->ant = novo;
     atual->prox = novo;
+    lista->tamanho++;
 }
 
 void insere_fim(lista_dupla *lista, int id, char nome[50]){
@@ -95,6 +94,7 @@ void insere_fim(lista_dupla *lista, int id, char nome[50]){
     }
     
     lista->fim = novo;
+    lista->tamanho++;
 }
 
 lista_dupla_no* localiza_estacao(lista_dupla *lista, int id){
@@ -107,6 +107,7 @@ lista_dupla_no* localiza_estacao(lista_dupla *lista, int id){
         }
         atual = atual->prox;
     }
+    return NULL;
 }
 void remove_estacao(lista_dupla *lista, int id){
 
@@ -133,6 +134,7 @@ void remove_estacao(lista_dupla *lista, int id){
     }
 
     free(atual);
+    lista->tamanho--;
 }
 
 
