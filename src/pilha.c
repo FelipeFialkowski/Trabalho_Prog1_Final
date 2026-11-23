@@ -1,11 +1,9 @@
 #include "pilha.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void inicializa_pilha(pilha *pratos){
 
     pratos->topo = NULL;
+    pratos->tamanho = 0;
     
 }
 
@@ -23,6 +21,7 @@ void push(pilha *pratos, int numero){
     novo->prox = pratos->topo;
 
     pratos->topo = novo;
+    pratos->tamanho++;
 
 }
 
@@ -36,6 +35,7 @@ void pop(pilha *pratos){
     pratos->topo = pratos->topo->prox;
 
     free(aux);
+    pratos->tamanho--;
 }
 
 pilha_no peek(pilha *pratos){
@@ -67,4 +67,5 @@ void libera_no(pilha *pratos){
         pratos->topo = pratos->topo->prox;
         free(aux);
     }
+    pratos->tamanho = 0;
 }
