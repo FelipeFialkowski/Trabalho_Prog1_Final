@@ -1,5 +1,9 @@
 #ifndef PILHA_H
 #define PILHA_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 typedef struct pilha_no{
 
@@ -11,7 +15,8 @@ typedef struct pilha_no{
 typedef struct pilha{
 
     pilha_no *topo;
-
+    int tamanho;
+    
 } pilha;
 
 
