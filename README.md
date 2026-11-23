@@ -45,3 +45,7 @@ Argumentos nas funções: estoque(Kojima:eu tava me dando gasight achando que eu
 Felipe - Coloquei o address sanitizer no makefile, implementei lista dupla e pilha com a maioria das suas funções, atualizei o menu, e comecei a fazer a fila.
 
 Kojima - Termino da implementação da lista simples colocando a checagem da lista vazia onde importava,além disso corrigi alguns bugs no codigo da lista_dupla, movendo os includes para o.h(não é bug mas me da agonia quando ta fora) e adicionei a mudança de tamanho nas funções da lista,além de inicializar ela com tamanho 0.
+
+23-11-26
+
+Kojima - resolvi adicionar o tamanho dentro dos codigos da pilha(o enunciado não pedia mas acho melhor ter a informação do tamanho)
