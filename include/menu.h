@@ -3,6 +3,6 @@
 #include "lista_dupla.h"
 
 
-void imprime_menu(jogador *j, int turno);
+void imprime_menu(jogador *j, int turno, int pontuacao, int vidas);
 
 #endif

@@ -24,8 +24,8 @@ void insere_inicio(lista_dupla *lista, int id, char nome[50]){
     }
 
     novo->id = id;
-    strncpy(novo->nome, nome, sizeof(novo->nome) - 1);
-
+    snprintf(novo->nome, sizeof(novo->nome), "%s", nome);
+    
     novo->ant = NULL;
     
     if(lista->inicio == NULL){
@@ -60,8 +60,7 @@ void insere_meio(lista_dupla *lista, int id, int id_nova, char nome[50]){
         return;
 
     novo->id = id_nova;
-    strncpy(novo->nome, nome, sizeof(novo->nome) - 1);
-    novo->nome[sizeof(novo->nome) - 1] = '\0';
+    snprintf(novo->nome, sizeof(novo->nome), "%s", nome);
 
     novo->ant = atual;
     novo->prox = atual->prox;
@@ -80,7 +79,7 @@ void insere_fim(lista_dupla *lista, int id, char nome[50]){
     }
 
     novo->id = id;
-    strncpy(novo->nome, nome, sizeof(novo->nome) - 1);
+    snprintf(novo->nome, sizeof(novo->nome), "%s", nome);
 
     novo->prox = NULL;
     novo->ant = lista->fim;

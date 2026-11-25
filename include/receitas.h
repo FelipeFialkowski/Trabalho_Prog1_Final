@@ -5,8 +5,8 @@ typedef struct receita{
 
     int id;
     char nome[50];
-    char ingredientes[2][50];
-    int operaçcoes;
+    char ingredientes[3][50];
+    int operacoes;
     int pre_requisitos;
 
 

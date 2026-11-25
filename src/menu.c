@@ -1,16 +1,14 @@
 #include <stdio.h>
 #include "lista_dupla.h"
 
-void imprime_menu(jogador *j, int turno){
+void imprime_menu(jogador *j, int turno, int pontuacao, int vidas){
 
-    printf("\nPontos:\n"
-           "Vidas restantes:\n"
-           "Pedidos pendentes:\n"
-           "Estoque:\n"
-           "Bancada:\n");
+    printf("\nPontos: %d\n"
+           "Vidas restantes: %d\n",pontuacao, vidas);
+
 
     printf("Turno atual: %d\n", turno);
-    printf("Estação atual: %s\n", &j->estacao_atual->nome );
+    printf("Estação atual: %s\n", j->estacao_atual->nome );
     printf("______________________________\n");
 
     printf("\n [1] Consultar pedidos\n"
@@ -19,6 +17,7 @@ void imprime_menu(jogador *j, int turno){
                " [4] Ir para estacao anterior\n"
                " [5] Entregar prato\n"
                " [6] A definir\n"
+               " [7] Aguradar voluntariamente\n"
                " [0] Sair do jogo\n\n");
     printf("Escolha uma opcao: ");
 

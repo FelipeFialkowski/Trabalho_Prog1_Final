@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-receita receitas[2];
+receita receitas[3];
 
 void montar_receitas(){
     receitas[0].id = 23;
@@ -21,9 +21,4 @@ void montar_receitas(){
     strcpy(receitas[2].nome, "Sopa");
     strcpy(receitas[2].ingredientes[0], "Agua");
     strcpy(receitas[2].ingredientes[1], "Tomate");
-}
-
-int escolhe_receita(){
-    int receita = rand() % 2;
-    return receita;
 }

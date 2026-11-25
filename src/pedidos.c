@@ -14,50 +14,85 @@ void inicializa_fila(fila *pedidos){
 void insere(fila *pedidos, int id, char prato[50], int turno, int prazo, int pontuacao){
 
     fila_no *novo = malloc(sizeof(fila_no));
+    if (novo == NULL){
+        return;
+    }
     novo->id = id;
     strncpy(novo->prato, prato, sizeof(novo->prato) - 1);
     novo->turno = turno;
     novo->prazo = prazo;
     novo->pontuacao = pontuacao;
+    novo->prox = NULL;
 
     if (pedidos->ultimo == NULL){
         pedidos->primeiro = novo;
     }
-    pedidos->ultimo->prox = novo;
+    else{
+        pedidos->ultimo->prox = novo;
+    }
     pedidos->ultimo = novo;
+    pedidos->tamanho++;
     
 }
 
 fila_no* remover(fila *pedidos){
-
-    fila_no *novo = pedidos->primeiro;
     if (pedidos->primeiro == NULL){
-        pedidos->ultimo = NULL;
-    }   
-    pedidos->primeiro = pedidos->primeiro->prox;
-    free(pedidos->primeiro);
+        return NULL;
+    }
+    fila_no *novo = pedidos->primeiro;
+    pedidos->primeiro = novo->prox;
 
+    if (pedidos->primeiro == NULL){    
+        pedidos->ultimo = NULL;
+    }
+    novo->prox = NULL;
+    pedidos->tamanho--;
     return novo;
 }
 
-void libera_nos(fila *pedidos){
+void liberar_nos(fila *pedidos){
 
-    fila_no *remove = pedidos->primeiro;
+    fila_no *novo = pedidos->primeiro;
     
-    while(remove != NULL){
-        fila_no *prox = remove->prox;
-        free(remove);
-        remove = prox;
+    while(novo != NULL){
+        fila_no *prox = novo->prox;
+        free(novo);
+        novo = prox;
     }
 
     pedidos->primeiro = NULL;
     pedidos->ultimo = NULL;
 }
-//Tem que ver isso ainda
-/*
-void gerar_pedido(fila *pedidos, int turno, int id, int prato, int prazo, int pontuacao){
-    if(turno % 3 == 0){
-        insere(pedidos, id, prato, turno, prazo, pontuacao);
+
+void gerar_pedido(fila *pedidos, int turno, int *proximo_id){
+    if(turno > 0 && turno % 3 == 0){
+        char *pratos[] = {"Hamburguer", "Salada", "Sopa"};
+        int escolhido = rand() % 3;
+        insere(pedidos, *proximo_id, pratos[escolhido], turno, turno + 10, 100);
+        (*proximo_id)++;
     }
 }
-*/
+
+
+void consultar_pedidos(fila *pedidos){
+
+    if(pedidos->ultimo == NULL){
+        printf("Não há nenhum pedido\n");
+    }
+    else{
+        for (fila_no *p = pedidos->primeiro; p != NULL; p = p->prox){
+                printf("Pedido #%d - %s | Turno: %d | Prazo: %d | Pontos: %d\n", p->id, p->prato, p->turno, p->prazo, p->pontuacao);
+        }
+    }
+}
+
+fila_no* consultar_primeiro(fila *pedidos){
+
+    if(pedidos->ultimo == NULL){
+        printf("Não há nenhum pedido\n");
+        return NULL;
+    }
+    else{
+        return pedidos->primeiro;
+    }
+}
