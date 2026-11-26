@@ -49,3 +49,7 @@ Kojima - Termino da implementação da lista simples colocando a checagem da lis
 23-11-26
 
 Kojima - resolvi adicionar o tamanho dentro dos codigos da pilha(o enunciado não pedia mas acho melhor ter a informação do tamanho)
+
+26/11/26
+
+Kojima - Arrumei erros da main, um deles era que estava dando para entregar pedidos de qualquer estação e o outro era que a gente não estava destruindo as estações no fim do programa
