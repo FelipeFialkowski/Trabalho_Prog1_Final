@@ -1,8 +1,4 @@
 #include "ingredientes.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 
 //ingredientes com quantidade igual a 0(zero) permanecem na estoque
 

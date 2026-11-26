@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "ingredientes.h"
 #include "lista_dupla.h"
 #include "menu.h"
 #include "time.h"
@@ -10,6 +11,7 @@ int main(){
     srand(time(NULL));
 
     int proximo_id = 1;
+    lista_simples estoque;
     lista_dupla estacoes;
     fila pedidos;
     jogador j;
@@ -22,15 +24,13 @@ int main(){
     int opcao = -1;
     while (opcao != 0 && pontuacao < 500 && vidas > 0){
 
-        if(pontuacao < 0){
+        if(pontuacao < 0)
             pontuacao = 0;
-        }
 
         imprime_menu(&j, turno, pontuacao, vidas);
        
-        if (fgets(entrada, sizeof(entrada), stdin) == NULL) {
+        if (fgets(entrada, sizeof(entrada), stdin) == NULL) 
             break;
-        }
 
         char *fim;
         long numero = strtol(entrada, &fim, 10);
@@ -53,9 +53,9 @@ int main(){
             case 1:
                 consultar_pedidos(&pedidos);
                 break;
-
+            //consultar estoque
             case 2:
-
+                imprime_lista(&estoque);
                 break;
 
             // Avança uma estação
@@ -83,20 +83,23 @@ int main(){
                 fila_no* entregue = consultar_primeiro(&pedidos);
                 if(entregue == NULL){
                     printf("Não há nenhum pedido para entregar\n");
+                    break;
+                }
+                if(j.estacao_atual->id != 5){
+                    printf("Estação errada");
+                    break;
+                }
+                if(turno > entregue->prazo){
+                    printf("O turno atual ultrapassou o prazo maximo para esse pedido, e ele foi perdido :(\n"
+                           "-50 Pontos\n"
+                           "1 Vida perdida\n");
+                    pontuacao = pontuacao - 50;
+                    vidas--;
                 }
                 else{
-                    if(turno > entregue->prazo){
-                        printf("O turno atual ultrapassou o prazo maximo para esse pedido, e ele foi perdido :(\n"
-                               "-50 Pontos\n"
-                               "1 Vida perdida\n");
-                        pontuacao = pontuacao - 50;
-                        vidas--;
-                    }
-                    else{
-                        int bonus = (entregue->prazo - turno) * 10;
-                        pontuacao = pontuacao + 100 + bonus;
-                        printf("O pedido número %d foi entregue | Adicionado %d pontos + %d pontos bonus\n", entregue->id, entregue->pontuacao, bonus);
-                    }
+                    int bonus = (entregue->prazo - turno) * 10;
+                    pontuacao = pontuacao + 100 + bonus;
+                    printf("O pedido número %d foi entregue | Adicionado %d pontos + %d pontos bonus\n", entregue->id, entregue->pontuacao, bonus);
                 }
                 remover(&pedidos);
                 free(entregue);
@@ -119,7 +122,6 @@ int main(){
                 break;
         }
     }
-    liberar_nos(&pedidos);
     if (pontuacao >= 500) {
         printf("Parabéns você venceu!");
     }
@@ -129,4 +131,7 @@ int main(){
     else{
         printf("Parabéns você desistiu!");
     }
+    liberar_nos(&pedidos);
+    for (int i = 1; i < 6; i++)
+        remove_estacao(&estacoes, i);
 }

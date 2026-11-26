@@ -1,6 +1,5 @@
 #include "lista_dupla.h"
 
-
 void cria_lista_dupla(lista_dupla *lista, jogador *j){
     lista->inicio = NULL;
     lista->fim = NULL;
@@ -19,9 +18,8 @@ void insere_inicio(lista_dupla *lista, int id, char nome[50]){
 
     lista_dupla_no *novo = malloc(sizeof(lista_dupla_no));
 
-    if (novo == NULL){
+    if (novo == NULL)
         return;
-    }
 
     novo->id = id;
     snprintf(novo->nome, sizeof(novo->nome), "%s", nome);
@@ -41,7 +39,6 @@ void insere_inicio(lista_dupla *lista, int id, char nome[50]){
     lista->tamanho++;
 }
 
-// *Importante* A maneira que essa função funciona, é colocando a nova estação depois da estação representada pelo id
 void insere_meio(lista_dupla *lista, int id, int id_nova, char nome[50]){
 
     lista_dupla_no *atual = lista->inicio;
@@ -74,9 +71,8 @@ void insere_fim(lista_dupla *lista, int id, char nome[50]){
 
     lista_dupla_no *novo = malloc(sizeof(lista_dupla_no));
 
-    if (novo == NULL){
+    if (novo == NULL)
         return;
-    }
 
     novo->id = id;
     snprintf(novo->nome, sizeof(novo->nome), "%s", nome);
@@ -84,13 +80,10 @@ void insere_fim(lista_dupla *lista, int id, char nome[50]){
     novo->prox = NULL;
     novo->ant = lista->fim;
 
-    if (lista->inicio == NULL){
+    if (lista->inicio == NULL)
         lista->inicio = novo;
-    }
-
-    else{
+    else
         lista->fim->prox = novo;
-    }
     
     lista->fim = novo;
     lista->tamanho++;
@@ -108,30 +101,29 @@ lista_dupla_no* localiza_estacao(lista_dupla *lista, int id){
     }
     return NULL;
 }
+
 void remove_estacao(lista_dupla *lista, int id){
 
     lista_dupla_no *atual;
     atual = lista->inicio;
-    while (atual != NULL && atual->id != id){
+    while (atual != NULL && atual->id != id)
         atual = atual->prox;
-    }
-    if (atual == NULL){
+    
+    if (atual == NULL)
         return;
-    }
-    if(atual == lista->inicio){
+    
+    if(atual == lista->inicio)
         lista->inicio = atual->prox;
-    }
-    else{
+    
+    else
         atual->ant->prox = atual->prox;
-    }
-
-    if(atual->prox == NULL){
+    
+    if(atual->prox == NULL)
         lista->fim = atual->ant;
-    }
-    else{
+    
+    else
         atual->prox->ant = atual->ant;
-    }
-
+    
     free(atual);
     lista->tamanho--;
 }
