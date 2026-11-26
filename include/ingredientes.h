@@ -6,6 +6,9 @@ Lista Simples Encadeada
 
 #ifndef INGREDIENTES_H
 #define INGREDIENTES_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 //Lembrete:essa struct é de um dos nós
 typedef struct ingrediente{
