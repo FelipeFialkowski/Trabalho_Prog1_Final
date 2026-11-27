@@ -53,3 +53,7 @@ Kojima - resolvi adicionar o tamanho dentro dos codigos da pilha(o enunciado nã
 26/11/26
 
 Kojima - Arrumei erros da main, um deles era que estava dando para entregar pedidos de qualquer estação e o outro era que a gente não estava destruindo as estações no fim do programa, aleḿ disso arrumei o programa para que ele pude-se criar um estoque ja pronto de produtos e arrumei alguns eros no pedidos.c e .h assim como a inicialização dos pedidos, só faltou criar o esquema para pegar os ingredientes do estoque e poder preparar eles...meio que todo o looping do jogo se for parar pra pensar
+
+27/11/26
+
+Kojima - Correção do menu para adicionar mais opções e criação do sistema de pegar e preparar os pratos(retirar eles do estoque,cortar,esquentar,montar e entregar)
