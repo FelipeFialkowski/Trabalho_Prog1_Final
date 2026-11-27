@@ -15,10 +15,15 @@ void imprime_menu(jogador *j, int turno, int pontuacao, int vidas){
                " [2] Consultar estoque\n"
                " [3] Ir para proxima estacao\n"
                " [4] Ir para estacao anterior\n"
-               " [5] Entregar prato\n"
-               " [6] A definir\n"
-               " [7] Aguradar voluntariamente\n"
+               " [5] Pegar Ingredientes\n"
+               " [6] Cortar\n"
+               " [7] Cozinhar\n"
+               " [8] Montar Prato\n"
+               " [9] Entregar Prato\n"
+               " [10] Aguradar voluntariamente\n"
                " [0] Sair do jogo\n\n");
-    printf("Escolha uma opcao: ");
+    printf("Escolha uma opcao: \n");
+
+    printf("______________________________\n");
 
     }

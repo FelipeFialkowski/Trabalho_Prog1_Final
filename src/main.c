@@ -4,7 +4,8 @@
 #include "lista_dupla.h"
 #include "menu.h"
 #include "time.h"
-#include "pedidos.h"    
+#include "pedidos.h"   
+#include "receitas.h" 
 
 int main(){
     
@@ -25,6 +26,10 @@ int main(){
     int pontuacao = 0;
     int vidas = 3;
     int proximo_id = 1;
+    preparo prato_atual = {0};
+
+    montar_receitas();
+    
 
     int opcao = -1;
     while (opcao != 0 && pontuacao < 500 && vidas > 0){
@@ -60,8 +65,10 @@ int main(){
                 break;
             //consultar estoque
             case 2:
-                if(j.estacao_atual->id != 1)
+                if(j.estacao_atual->id != 1){
                     printf("\nNão é possivel ver o estoque...fora do estoque\n");
+                    break;
+                }
                 imprime_lista(estoque);
                 break;
 
@@ -85,8 +92,48 @@ int main(){
                 printf("Não é possível voltar de estação\n");
                 break;
 
-            //Entregar pedido
+            //pegar ingredientes
             case 5:
+                if(j.estacao_atual->id != 1){
+                    printf("Não é possivel pegar ingredientes fora do estoque\n");
+                    break;
+                }
+                if(prato_atual.ativo){
+                    printf("Ja ah um prato sendo feito");
+                    break;
+                }
+                
+                break;
+
+            //cortar ingredientes
+            case 6:
+                if(j.estacao_atual->id != 2){
+                    printf("Não é possivel cortar fora da tabua\n");
+                    break;
+                }
+
+                break;
+
+            //esquentar ingredientes
+            case 7:
+                if(j.estacao_atual->id != 3){
+                    printf("Não é possivel esquentar fora do fogão\n");
+                    break;
+                }
+
+                break;
+
+            //montar pedido
+            case 8:
+                if(j.estacao_atual->id != 4){
+                    printf("Não é possivel montar fora da estação de montagem\n");
+                    break;
+                }
+
+                break;
+
+            //Entregar pedido
+            case 9:
                 fila_no* entregue = consultar_primeiro(&pedidos);
                 if(entregue == NULL){
                     printf("Não há nenhum pedido para entregar\n");
@@ -112,12 +159,8 @@ int main(){
                 free(entregue);
                 turno++;
                 break;
- 
-            case 6:
-                break;
-
             //Deixa turno passar
-            case 7:
+            case 10:
                 printf("Passou o turno\n");
                 turno++;
                 gerar_pedido(&pedidos, turno, &proximo_id);
