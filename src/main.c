@@ -10,16 +10,21 @@ int main(){
     
     srand(time(NULL));
 
-    int proximo_id = 1;
-    lista_simples estoque;
-    lista_dupla estacoes;
+    lista_simples *estoque = cria_lista();
+    inicializa_estoque(estoque);
+
     fila pedidos;
+    inicializa_fila(&pedidos);
+
+    lista_dupla estacoes;
     jogador j;
-    char entrada[50];
     cria_lista_dupla(&estacoes, &j);
+    
+    char entrada[50];
     int turno = 0;
     int pontuacao = 0;
     int vidas = 3;
+    int proximo_id = 1;
 
     int opcao = -1;
     while (opcao != 0 && pontuacao < 500 && vidas > 0){
@@ -55,7 +60,9 @@ int main(){
                 break;
             //consultar estoque
             case 2:
-                imprime_lista(&estoque);
+                if(j.estacao_atual->id != 1)
+                    printf("\nNão é possivel ver o estoque...fora do estoque\n");
+                imprime_lista(estoque);
                 break;
 
             // Avança uma estação
@@ -134,4 +141,5 @@ int main(){
     liberar_nos(&pedidos);
     for (int i = 1; i < 6; i++)
         remove_estacao(&estacoes, i);
+    destroi_lista(estoque);
 }

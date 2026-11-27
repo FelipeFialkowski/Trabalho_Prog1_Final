@@ -128,3 +128,11 @@ void imprime_lista(lista_simples *estoque){
         atual = atual->prox;
     }
 }
+
+void inicializa_estoque(lista_simples *estoque) {
+    insere_ingrediente(estoque, 1, "Pao", rand() % 10);
+    insere_ingrediente(estoque, 2, "Carne", rand() % 10);
+    insere_ingrediente(estoque, 3, "Queijo", rand() % 10);
+    insere_ingrediente(estoque, 4, "Alface", rand() % 10);
+    insere_ingrediente(estoque, 5, "Tomate", rand() % 10);
+}
