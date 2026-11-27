@@ -32,6 +32,7 @@ int consome_ingrediente(lista_simples *estoque,int id, int quantidade); //retorn
 int remove_da_lista(lista_simples *estoque,int id);
 int checa_vazia(lista_simples *estoque);
 void imprime_lista(lista_simples *estoque);
+void inicializa_estoque(lista_simples *estoque);
 
 #endif
 
